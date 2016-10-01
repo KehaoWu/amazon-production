@@ -80,7 +80,7 @@ def fetchByKeyword(keyword, conn=None):
                 asin varchar(10) NOT NULL,
                 img text NULL,
                 newimg text NULL,
-                price text NOT NULL,
+                price text NULL,
                 createtime timestamp NOT NULL,
                 updatetime timestamp NOT NULL,
                 PRIMARY KEY (asin)

@@ -1,0 +1,48 @@
+LOG:  database system was shut down at 2016-10-01 10:08:45 EDT
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  role "kwu9" does not exist
+ERROR:  relation "item" does not exist at character 15
+STATEMENT:  select * from item;
+ERROR:  relation "items" does not exist at character 15
+STATEMENT:  select * from items;
+ERROR:  relation "pages" does not exist at character 15
+STATEMENT:  select * from pages;
+LOG:  database system was interrupted; last known up at 2016-10-01 10:30:46 EDT
+LOG:  database system was not properly shut down; automatic recovery in progress
+LOG:  redo starts at 0/17C9B90
+LOG:  invalid record length at 0/17C9C70
+LOG:  redo done at 0/17C9C38
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  multiple assignments to same column "updatetime"
+STATEMENT:  
+	        INSERT INTO items
+	        (title, asin, img, price, createtime, updatetime)
+	        VALUES
+	        ('码农·从Python开始（总第7期）', 'B00IR4A2O0', 'https://images-cn.ssl-images-amazon.com/images/I/41AIvE1R-4L._AA160_.jpg', '￥0.00', now(), now())
+	        ON CONFLICT (asin)
+	        DO UPDATE SET
+	        updatetime = now(),
+	        title = EXCLUDED.title,
+	        img = EXCLUDED.img,
+	        price = EXCLUDED.price,
+	        updatetime = EXCLUDED.updatetime
+	    
+ERROR:  null value in column "price" violates not-null constraint
+DETAIL:  Failing row contains (浴血狂蟒, B00118K6S6, https://images-cn.ssl-images-amazon.com/images/I/611U-ncRvxL._AA..., null, null, 2016-10-01 10:40:28.971462, 2016-10-01 10:40:28.971462).
+STATEMENT:  
+	        INSERT INTO items
+	        (title, asin, img, price, createtime, updatetime)
+	        VALUES
+	        ('浴血狂蟒', 'B00118K6S6', 'https://images-cn.ssl-images-amazon.com/images/I/611U-ncRvxL._AA160_.jpg', NULL, now(), now())
+	        ON CONFLICT (asin)
+	        DO UPDATE SET
+	        updatetime = now(),
+	        title = EXCLUDED.title,
+	        img = EXCLUDED.img,
+	        price = EXCLUDED.price
+	    
+LOG:  unexpected EOF on client connection with an open transaction

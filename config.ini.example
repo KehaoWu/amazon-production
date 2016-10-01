@@ -1,0 +1,6 @@
+[database]
+database = amazon
+user =
+password = 
+host = localhost
+port = 5563

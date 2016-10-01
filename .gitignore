@@ -2,3 +2,6 @@
 pg95
 config.ini
 *.txt
+logfile
+*.log
+nohup.out
